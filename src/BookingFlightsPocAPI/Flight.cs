@@ -1,5 +1,5 @@
 
-namespace msdemo.flightsearch
+namespace BookingFlightsPocAPI.Models
 {
     public class FlightOffers
     {
@@ -59,4 +59,18 @@ namespace msdemo.flightsearch
         public Flight InboundFlight { get; set; }
         public string TotalPrice { get; set; }
     }
+
+
+    
+    public class FlightSearchRequest
+    {
+    
+        public string DepartureAirport { get; set; }
+        public string ArrivalAirport { get; set; }
+        public string DepartureDate { get; set; }
+        public string ReturnDate { get; set; }
+
+          public int MaxResults { get; set; }
+    }
+
 }

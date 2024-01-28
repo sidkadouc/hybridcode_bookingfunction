@@ -2,15 +2,15 @@ using System.Net;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
-using System;  
-using System.Collections.Generic;  
-using System.Net.Http;  
-using System.Threading.Tasks;  
 using Newtonsoft.Json;
-using msdemo.flightsearch.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
+using Microsoft.OpenApi.Models;
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Enums;
+using BookingFlightsPocAPI.Services;
+using BookingFlightsPocAPI.Models;
 
-namespace msdemo.flightsearch
+namespace BookingFlightsPocAPI.flightsearch
 {
     public class FlightsSearch
     {
@@ -24,22 +24,22 @@ namespace msdemo.flightsearch
         }
 
     [Function("FlightsSearch")]
+     [OpenApiOperation(operationId: "Run")]
+        [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
+        [OpenApiRequestBody("application/json", typeof(FlightSearchRequest),
+            Description = "JSON request body containing Flight Search Request")]
+        [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(List<CompleteFlight>),
+            Description = "The OK response message containing a JSON result.")]
     public async Task<IActionResult> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
 
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
-        dynamic data = JsonConvert.DeserializeObject(requestBody);
-
-        string departureLocationCode = data.departure_location_code;
-        string arrivalLocationCode = data.arrival_location_code;
-        string returnDate = data.return_date;
-        string departureDate = data.departure_date;
-
+        FlightSearchRequest flightsearchrequest = JsonConvert.DeserializeObject<FlightSearchRequest>(requestBody);
         await _api.ConnectOAuth();
         _logger.LogInformation(_api.bearerToken);
-        var flights = await _api.SearchFlights(departureLocationCode, arrivalLocationCode, returnDate, departureDate);
+        var flights = await _api.SearchFlights(flightsearchrequest);
 
         return new OkObjectResult(flights);
     }

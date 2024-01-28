@@ -1,8 +1,9 @@
 using System.Text;
+using BookingFlightsPocAPI.Models;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
-namespace msdemo.flightsearch.Services
+namespace BookingFlightsPocAPI.Services
 {
     public class TravelAPI
     {
@@ -13,15 +14,15 @@ namespace msdemo.flightsearch.Services
 
         public TravelAPI(IConfiguration config, IHttpClientFactory httpFactory)
         {
-            apiKey =  System.Environment.GetEnvironmentVariable("AmadeusAPI_APIKey", EnvironmentVariableTarget.Process);
-            apiSecret = System.Environment.GetEnvironmentVariable("AmadeusAPI_APISecret", EnvironmentVariableTarget.Process);
+            apiKey =  Environment.GetEnvironmentVariable("AmadeusAPI_APIKey", EnvironmentVariableTarget.Process);
+            apiSecret = Environment.GetEnvironmentVariable("AmadeusAPI_APISecret", EnvironmentVariableTarget.Process);
             http = httpFactory.CreateClient("TravelAPI");
         }
 
 
-        public async Task<List<CompleteFlight>> SearchFlights(string departureLocationCode, string arrivalLocationCode, string returnDate, string departureDate)
+        public async Task<List<CompleteFlight>> SearchFlights(FlightSearchRequest flightSearchRequest)
         {
-            var endpoint = $"v2/shopping/flight-offers?originLocationCode={departureLocationCode}&destinationLocationCode={arrivalLocationCode}&departureDate={departureDate}&returnDate={returnDate}&adults=1&max=5&nonStop=true";
+            var endpoint = $"v2/shopping/flight-offers?originLocationCode={flightSearchRequest.DepartureAirport}&destinationLocationCode={flightSearchRequest.ArrivalAirport}&departureDate={flightSearchRequest.DepartureDate}&returnDate={flightSearchRequest.ReturnDate}&adults=1&max={flightSearchRequest.MaxResults}&nonStop=true";
             ConfigBearerTokenHeader();
             var response = await http.GetAsync(endpoint);
             if (response.IsSuccessStatusCode)
