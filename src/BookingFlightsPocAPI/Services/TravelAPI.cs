@@ -31,11 +31,7 @@ namespace BookingFlightsPocAPI.Services
 
                 var flightOffers = JsonConvert.DeserializeObject<FlightOffers>(responseContent);
 
-                List<CompleteFlight> flights = new List<CompleteFlight>();
-
-                foreach (var offer in flightOffers.data)
-                {
-                    CompleteFlight flight = new CompleteFlight{
+                List<CompleteFlight> flights = flightOffers.data.Select(offer => new CompleteFlight{
                         OutboundFlight = new Flight { 
                          AircraftCode = offer.itineraries[0].segments[0].carrierCode ,
                          ArrivalAirport = offer.itineraries[0].segments[0].arrival.iataCode, 
@@ -54,11 +50,8 @@ namespace BookingFlightsPocAPI.Services
                          IsOutbound = true
                         }, 
                         TotalPrice = $"{offer.price.total} {offer.price.currency}"
-                    };
-                    
+                    }).ToList();
 
-                    flights.Add(flight);
-                }
                 return flights;
             }
             else
