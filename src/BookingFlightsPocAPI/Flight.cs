@@ -1,4 +1,7 @@
 
+using Microsoft.Azure.WebJobs.Extensions.OpenApi.Core.Attributes;
+using Newtonsoft.Json;
+
 namespace BookingFlightsPocAPI.Models
 {
     public class FlightOffers

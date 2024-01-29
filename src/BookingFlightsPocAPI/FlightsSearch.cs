@@ -24,13 +24,13 @@ namespace BookingFlightsPocAPI.flightsearch
         }
 
     [Function("FlightsSearch")]
-     [OpenApiOperation(operationId: "Run")]
+     [OpenApiOperation(operationId: "FlightSearch")]
         [OpenApiSecurity("function_key", SecuritySchemeType.ApiKey, Name = "code", In = OpenApiSecurityLocationType.Query)]
         [OpenApiRequestBody("application/json", typeof(FlightSearchRequest),
             Description = "JSON request body containing Flight Search Request")]
         [OpenApiResponseWithBody(statusCode: HttpStatusCode.OK, contentType: "application/json", bodyType: typeof(List<CompleteFlight>),
             Description = "The OK response message containing a JSON result.")]
-    public async Task<IActionResult> Run(
+    public async Task<HttpResponseData> Run(
         [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequestData req)
     {
         _logger.LogInformation("C# HTTP trigger function processed a request.");
@@ -38,10 +38,12 @@ namespace BookingFlightsPocAPI.flightsearch
         string requestBody = await new StreamReader(req.Body).ReadToEndAsync();
         FlightSearchRequest flightsearchrequest = JsonConvert.DeserializeObject<FlightSearchRequest>(requestBody);
         await _api.ConnectOAuth();
-        _logger.LogInformation(_api.bearerToken);
         var flights = await _api.SearchFlights(flightsearchrequest);
+        var response = req.CreateResponse(HttpStatusCode.OK);
+        await response.WriteAsJsonAsync(flights);
+        
 
-        return new OkObjectResult(flights);
+        return response;
     }
 }  
  
