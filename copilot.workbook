@@ -1,10 +1,8 @@
 {
   "version": "Notebook/1.0",
-  "name": "Copilot Studio Dashboard - Extended with Content Safety",
   "items": [
     {
       "type": 9,
-      "name": "parameters",
       "content": {
         "version": "KqlParameterItem/1.0",
         "parameters": [
@@ -21,18 +19,42 @@
             },
             "typeSettings": {
               "selectableValues": [
-                { "durationMs": 3600000 },
-                { "durationMs": 14400000 },
-                { "durationMs": 43200000 },
-                { "durationMs": 86400000 },
-                { "durationMs": 172800000 },
-                { "durationMs": 259200000 },
-                { "durationMs": 604800000 },
-                { "durationMs": 1209600000 },
-                { "durationMs": 2419200000 },
-                { "durationMs": 2592000000 },
-                { "durationMs": 5184000000 },
-                { "durationMs": 7776000000 }
+                {
+                  "durationMs": 3600000
+                },
+                {
+                  "durationMs": 14400000
+                },
+                {
+                  "durationMs": 43200000
+                },
+                {
+                  "durationMs": 86400000
+                },
+                {
+                  "durationMs": 172800000
+                },
+                {
+                  "durationMs": 259200000
+                },
+                {
+                  "durationMs": 604800000
+                },
+                {
+                  "durationMs": 1209600000
+                },
+                {
+                  "durationMs": 2419200000
+                },
+                {
+                  "durationMs": 2592000000
+                },
+                {
+                  "durationMs": 5184000000
+                },
+                {
+                  "durationMs": 7776000000
+                }
               ],
               "allowCustom": true
             },
@@ -45,23 +67,24 @@
             "label": "Copilot Agent",
             "type": 2,
             "description": "Select specific Copilot Studio agent(s) to analyze",
-            "isRequired": false,
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
             "query": "customEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| distinct cloud_RoleInstance\n| order by cloud_RoleInstance asc",
-            "isHiddenWhenLocked": false,
             "typeSettings": {
-              "additionalResourceOptions": [ "value::all" ],
+              "additionalResourceOptions": [
+                "value::all"
+              ],
               "selectAllValue": "*",
               "showDefault": false
             },
-            "timeContextFromParameter": null,
             "defaultValue": "value::all",
             "queryType": 0,
             "resourceType": "microsoft.insights/components",
             "key": "copilotAgent",
-            "value": [ "value::all" ]
+            "value": [
+              "value::all"
+            ]
           },
           {
             "id": "channelFilter",
@@ -70,18 +93,17 @@
             "label": "Channel",
             "type": 2,
             "description": "Filter by communication channel",
-            "isRequired": false,
             "multiSelect": true,
             "quote": "'",
             "delimiter": ",",
             "query": "customEvents\n| where itemType == \"customEvent\"\n| extend \n    channelId = tostring(customDimensions.channelId),\n    isDesignMode = tostring(customDimensions.designMode)\n| where cloud_RoleName == \"Microsoft Copilot Studio\" and isnotempty(channelId)\n| distinct channelId\n| order by channelId asc",
-            "isHiddenWhenLocked": false,
             "typeSettings": {
-              "additionalResourceOptions": [ "value::all" ],
+              "additionalResourceOptions": [
+                "value::all"
+              ],
               "selectAllValue": "*",
               "showDefault": false
             },
-            "timeContextFromParameter": null,
             "defaultValue": "value::all",
             "queryType": 0,
             "resourceType": "microsoft.insights/components",
@@ -107,22 +129,21 @@
             "id": "5b83b8db-91c8-4b19-a974-1df6706a83db",
             "version": "KqlParameterItem/1.0",
             "name": "AppInsights",
-            "label": "AppInsights",
             "type": 5,
-            "isRequired": false,
-            "multiSelect": false,
             "isHiddenWhenLocked": true,
             "typeSettings": {
               "additionalResourceOptions": [],
               "showDefault": false,
               "componentIdOnly": true
             },
-            "timeContextFromParameter": null,
             "key": "5b83b8db-91c8-4b19-a974-1df6706a83db"
           }
         ],
-        "style": "pills"
+        "style": "pills",
+        "queryType": 0,
+        "resourceType": "microsoft.insights/components"
       },
+      "name": "parameters",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -134,12 +155,11 @@
     },
     {
       "type": 1,
-      "name": "Operational Metrics",
       "content": {
         "json": "",
-        "title": "Overview",
-        "showViewButton": false
+        "title": "Overview"
       },
+      "name": "Operational Metrics",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -154,12 +174,11 @@
     },
     {
       "type": 1,
-      "name": "User Analytics",
       "content": {
         "json": "",
-        "title": "User Analytics",
-        "showViewButton": false
+        "title": "User Analytics"
       },
+      "name": "User Analytics",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -174,12 +193,11 @@
     },
     {
       "type": 1,
-      "name": "Performance Section",
       "content": {
         "json": "",
-        "title": "Performance",
-        "showViewButton": false
+        "title": "Performance"
       },
+      "name": "Performance Section",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -194,12 +212,11 @@
     },
     {
       "type": 1,
-      "name": "Topic Analytics Section",
       "content": {
         "json": "",
-        "title": "Topic Analytics",
-        "showViewButton": false
+        "title": "Topic Analytics"
       },
+      "name": "Topic Analytics Section",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -214,23 +231,33 @@
     },
     {
       "type": 3,
-      "name": "Total conversaions",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\nlet start_time = {TimeRange:start}; \nlet end_time = {TimeRange:end}; \nlet period = end_time - start_time;\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet change_percent = (final: double, initial: double) {\n    iff(initial == 0, \n        iff(final == 0, real(0), real(100)),\n        (final-initial) / initial * 100)\n};\n\ncustomEvents\n| where timestamp between ((start_time - period) .. end_time)\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| make-series kind=nonempty total_conversations = dcount(conversationId) on timestamp from (start_time - period) to end_time step period\n| project final_total_conversations = todouble(total_conversations[1]), initial_total_conversations = todouble(total_conversations[0])\n| project \n    metric = \"Total conversations\", \n    final_total_conversations, \n    initial_total_conversations,\n    overall_percentage_change = round(change_percent(final_total_conversations, initial_total_conversations)),\n    absolute_change = final_total_conversations - initial_total_conversations\n| extend change_description = case(\n    initial_total_conversations == 0 and final_total_conversations > 0, strcat(\"New: +\", tostring(toint(final_total_conversations)), \" conversations\"),\n    initial_total_conversations > 0 and final_total_conversations == 0, \"All conversations stopped\",\n    initial_total_conversations == 0 and final_total_conversations == 0, \"No conversations in either period\",\n    strcat(iff(final_total_conversations > initial_total_conversations, \"+\", \"\"), \n           tostring(round(overall_percentage_change, 1)), \"% change\")\n)",
         "size": 4,
+        "showAnalytics": true,
+        "noDataMessage": "The query returned no results. Try updating the time range or changing filters.",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
         "visualization": "tiles",
         "tileSettings": {
-          "titleContent": { "columnMatch": "metric", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "metric",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "final_total_conversations",
             "formatter": 12,
-            "formatOptions": { "palette": "none" },
-            "numberFormat": { "unit": 17, "options": { "style": "decimal", "maximumFractionDigits": 1 } }
+            "formatOptions": {
+              "palette": "none"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 1
+              }
+            }
           },
           "secondaryContent": {
             "columnMatch": "overall_percentage_change",
@@ -238,22 +265,43 @@
             "formatOptions": {
               "thresholdsOptions": "colors",
               "thresholdsGrid": [
-                { "operator": ">", "thresholdValue": "0", "representation": "green", "text": "{0}{1} increase over time range" },
-                { "operator": "<", "thresholdValue": "0", "representation": "red", "text": "{0}{1} decrease over time range" },
-                { "operator": "Default", "representation": "gray", "text": "No change" }
+                {
+                  "operator": ">",
+                  "thresholdValue": "0",
+                  "representation": "green",
+                  "text": "{0}{1} increase over time range"
+                },
+                {
+                  "operator": "<",
+                  "thresholdValue": "0",
+                  "representation": "red",
+                  "text": "{0}{1} decrease over time range"
+                },
+                {
+                  "operator": "Default",
+                  "representation": "gray",
+                  "text": "No change"
+                }
               ],
               "showAsTag": true
             },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal" } }
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal"
+              }
+            }
           },
           "showBorder": true,
           "size": "full",
-          "styleSettings": { "borderStyle": "rounded", "backgroundColor": "colorGray100" }
-        },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "The query returned no results. Try updating the time range or changing filters."
+          "styleSettings": {
+            "borderStyle": "rounded",
+            "backgroundColor": "colorGray100"
+          }
+        }
       },
+      "customWidth": "25",
+      "name": "Total conversaions",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -263,29 +311,38 @@
         "w": 6,
         "h": 3,
         "padding": "0"
-      },
-      "customWidth": "25"
+      }
     },
     {
       "type": 3,
-      "name": "Unique Users",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\nlet start_time = {TimeRange:start}; \nlet end_time = {TimeRange:end}; \nlet period = end_time - start_time;\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet change_percent = (final: double, initial: double) {\n    iff(initial == 0, \n        iff(final == 0, real(0), real(100)),\n        (final-initial) / initial * 100)\n};\n\ncustomEvents\n| where timestamp between ((start_time - period) .. end_time)\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| make-series kind=nonempty unique_users = dcount(user_Id) on timestamp from (start_time - period) to end_time step period\n| project final_unique_users = todouble(unique_users[1]), initial_unique_users = todouble(unique_users[0])\n| project \n    metric = \"Unique users\", \n    final_unique_users, \n    initial_unique_users,\n    overall_percentage_change = round(change_percent(final_unique_users, initial_unique_users), 0),\n    absolute_change = final_unique_users - initial_unique_users\n| extend change_description = case(\n    initial_unique_users == 0 and final_unique_users > 0, strcat(\"New: +\", tostring(toint(final_unique_users)), \" users\"),\n    initial_unique_users > 0 and final_unique_users == 0, \"No users in current period\",\n    initial_unique_users == 0 and final_unique_users == 0, \"No users in either period\",\n    strcat(iff(final_unique_users > initial_unique_users, \"+\", \"\"), \n           tostring(round(overall_percentage_change, 1)), \"% change\")\n)",
         "size": 4,
+        "showAnalytics": true,
+        "noDataMessage": "The query returned no results. Try updating the time range or changing filters.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "tiles",
         "tileSettings": {
-          "titleContent": { "columnMatch": "metric", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "metric",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "final_unique_users",
             "formatter": 12,
-            "formatOptions": { "palette": "none" },
-            "numberFormat": { "unit": 17, "options": { "style": "decimal", "maximumFractionDigits": 1 } }
+            "formatOptions": {
+              "palette": "none"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 1
+              }
+            }
           },
           "secondaryContent": {
             "columnMatch": "overall_percentage_change",
@@ -293,22 +350,44 @@
             "formatOptions": {
               "thresholdsOptions": "colors",
               "thresholdsGrid": [
-                { "operator": ">", "thresholdValue": "0", "representation": "green", "text": "{0}{1} increase over time range" },
-                { "operator": "<", "thresholdValue": "0", "representation": "red", "text": "{0}{1} decrease over time range" },
-                { "operator": "Default", "thresholdValue": null, "representation": "gray", "text": " No change" }
+                {
+                  "operator": ">",
+                  "thresholdValue": "0",
+                  "representation": "green",
+                  "text": "{0}{1} increase over time range"
+                },
+                {
+                  "operator": "<",
+                  "thresholdValue": "0",
+                  "representation": "red",
+                  "text": "{0}{1} decrease over time range"
+                },
+                {
+                  "operator": "Default",
+                  "thresholdValue": null,
+                  "representation": "gray",
+                  "text": " No change"
+                }
               ],
               "showAsTag": true
             },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal" } }
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal"
+              }
+            }
           },
           "showBorder": true,
           "size": "full",
-          "styleSettings": { "borderStyle": "rounded", "backgroundColor": "colorGray100" }
-        },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "The query returned no results. Try updating the time range or changing filters."
+          "styleSettings": {
+            "borderStyle": "rounded",
+            "backgroundColor": "colorGray100"
+          }
+        }
       },
+      "customWidth": "25",
+      "name": "Unique Users",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -318,29 +397,38 @@
         "w": 6,
         "h": 3,
         "padding": "0"
-      },
-      "customWidth": "25"
+      }
     },
     {
       "type": 3,
-      "name": "errorrates",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\nlet start_time = {TimeRange:start}; \nlet end_time = {TimeRange:end}; \nlet period = end_time - start_time;\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet change_percent = (final: double, initial: double) {\n    iff(initial == 0, \n        iff(final == 0, real(0), real(100)),\n        (final-initial) / initial * 100)\n};\n\ncustomEvents\n| where timestamp between ((start_time - period) .. end_time)\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where name == \"OnErrorLog\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId),\n    errorMessage = tostring(customDimensions.ErrorMessage),\n    errorCode = tostring(customDimensions.ErrorCode)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| make-series kind=nonempty total_errors = count() on timestamp from (start_time - period) to end_time step period\n| project final_total_errors = todouble(total_errors[1]), initial_total_errors = todouble(total_errors[0])\n| project \n    metric = \"Error Rate\", \n    final_total_errors, \n    initial_total_errors,\n    overall_percentage_change = change_percent(final_total_errors, initial_total_errors),\n    absolute_change = final_total_errors - initial_total_errors\n| extend change_description = case(\n    initial_total_errors == 0 and final_total_errors > 0, strcat(\"New: +\", tostring(toint(final_total_errors)), \" errors\"),\n    initial_total_errors > 0 and final_total_errors == 0, \"No errors in current period\",\n    initial_total_errors == 0 and final_total_errors == 0, \"No errors in either period\",\n    strcat(iff(final_total_errors > initial_total_errors, \"+\", \"\"), \n           tostring(round(overall_percentage_change, 1)), \"% change\")\n)",
         "size": 4,
+        "showAnalytics": true,
+        "noDataMessage": "The query returned no results. Try updating the time range or changing filters.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "tiles",
         "tileSettings": {
-          "titleContent": { "columnMatch": "metric", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "metric",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "final_total_errors",
             "formatter": 12,
-            "formatOptions": { "palette": "none" },
-            "numberFormat": { "unit": 17, "options": { "style": "decimal", "maximumFractionDigits": 1 } }
+            "formatOptions": {
+              "palette": "none"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 1
+              }
+            }
           },
           "secondaryContent": {
             "columnMatch": "overall_percentage_change",
@@ -348,22 +436,46 @@
             "formatOptions": {
               "thresholdsOptions": "colors",
               "thresholdsGrid": [
-                { "operator": ">", "thresholdValue": "0", "representation": "red", "text": "{0}{1} increase over time range" },
-                { "operator": "<", "thresholdValue": "0", "representation": "green", "text": "{0}{1} decrease over time range" },
-                { "operator": "Default", "thresholdValue": null, "representation": "gray", "text": " No change" }
+                {
+                  "operator": ">",
+                  "thresholdValue": "0",
+                  "representation": "red",
+                  "text": "{0}{1} increase over time range"
+                },
+                {
+                  "operator": "<",
+                  "thresholdValue": "0",
+                  "representation": "green",
+                  "text": "{0}{1} decrease over time range"
+                },
+                {
+                  "operator": "Default",
+                  "thresholdValue": null,
+                  "representation": "gray",
+                  "text": " No change"
+                }
               ],
               "showAsTag": true
             },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal", "minimumFractionDigits": 0, "maximumFractionDigits": 0 } }
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal",
+                "minimumFractionDigits": 0,
+                "maximumFractionDigits": 0
+              }
+            }
           },
           "showBorder": true,
           "size": "full",
-          "styleSettings": { "borderStyle": "rounded", "backgroundColor": "colorGray100" }
-        },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "The query returned no results. Try updating the time range or changing filters."
+          "styleSettings": {
+            "borderStyle": "rounded",
+            "backgroundColor": "colorGray100"
+          }
+        }
       },
+      "customWidth": "25",
+      "name": "errorrates",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -373,29 +485,38 @@
         "w": 6,
         "h": 3,
         "padding": "0"
-      },
-      "customWidth": "25"
+      }
     },
     {
       "type": 3,
-      "name": "UniqueUsersPerformance",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\nlet start_time = {TimeRange:start}; \nlet end_time = {TimeRange:end}; \nlet period = end_time - start_time;\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet change_percent = (final: double, initial: double) {\n    iff(initial == 0, \n        iff(final == 0, real(0), real(100)),\n        (final-initial) / initial * 100)\n};\n\nlet conversationDurations = customEvents\n| where timestamp between ((start_time - period) .. end_time)\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| summarize \n    StartTime = min(timestamp),\n    EndTime = max(timestamp),\n    EventCount = count()\n    by conversationId\n| extend ConversationDuration = EndTime - StartTime\n| where EventCount > 1 and ConversationDuration > 0s\n| extend TimePeriod = case(\n    StartTime >= start_time and StartTime < end_time, \"Current\",\n    StartTime >= (start_time - period) and StartTime < start_time, \"Previous\",\n    \"Unknown\"\n)\n| where TimePeriod != \"Unknown\"\n| extend DurationMins = ConversationDuration / 1m;\n\nconversationDurations\n| summarize \n    final_avg_duration = round(avgif(DurationMins, StartTime >= start_time and StartTime < end_time), 2),\n    initial_avg_duration = round(avgif(DurationMins, StartTime >= (start_time - period) and StartTime < start_time), 2)\n| extend \n    final_avg_duration = coalesce(final_avg_duration, 0.0),\n    initial_avg_duration = coalesce(initial_avg_duration, 0.0)\n| project \n    metric = \"Avg duration\", \n    final_avg_duration,\n    initial_avg_duration,\n    overall_percentage_change = change_percent(final_avg_duration, initial_avg_duration),\n    absolute_change_mins = round(final_avg_duration - initial_avg_duration, 2)\n| extend change_description = case(\n    initial_avg_duration == 0 and final_avg_duration > 0, strcat(\"New: \", tostring(final_avg_duration), \" min avg\"),\n    initial_avg_duration > 0 and final_avg_duration == 0, \"No conversations in current period\",\n    initial_avg_duration == 0 and final_avg_duration == 0, \"No conversations in either period\",\n    strcat(iff(final_avg_duration > initial_avg_duration, \"+\", \"\"), \n           tostring(round(overall_percentage_change, 1)), \"% change\")\n)",
         "size": 4,
+        "showAnalytics": true,
+        "noDataMessage": "The query returned no results. Try updating the time range or changing filters.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "tiles",
         "tileSettings": {
-          "titleContent": { "columnMatch": "metric", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "metric",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "final_avg_duration",
             "formatter": 12,
-            "formatOptions": { "palette": "none" },
-            "numberFormat": { "unit": 25, "options": { "style": "decimal", "maximumFractionDigits": 1 } }
+            "formatOptions": {
+              "palette": "none"
+            },
+            "numberFormat": {
+              "unit": 25,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 1
+              }
+            }
           },
           "secondaryContent": {
             "columnMatch": "overall_percentage_change",
@@ -403,22 +524,45 @@
             "formatOptions": {
               "thresholdsOptions": "colors",
               "thresholdsGrid": [
-                { "operator": ">", "thresholdValue": "0", "representation": "green", "text": "{0}{1} increase over time range" },
-                { "operator": "<", "thresholdValue": "0", "representation": "redBright", "text": "{0}{1} decrease over time range" },
-                { "operator": "Default", "thresholdValue": null, "representation": "gray", "text": "No change" }
+                {
+                  "operator": ">",
+                  "thresholdValue": "0",
+                  "representation": "green",
+                  "text": "{0}{1} increase over time range"
+                },
+                {
+                  "operator": "<",
+                  "thresholdValue": "0",
+                  "representation": "redBright",
+                  "text": "{0}{1} decrease over time range"
+                },
+                {
+                  "operator": "Default",
+                  "thresholdValue": null,
+                  "representation": "gray",
+                  "text": "No change"
+                }
               ],
               "showAsTag": true
             },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal", "maximumFractionDigits": 1 } }
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 1
+              }
+            }
           },
           "showBorder": true,
           "size": "full",
-          "styleSettings": { "borderStyle": "rounded", "backgroundColor": "colorGray100" }
-        },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "The query returned no results. Try updating the time range or changing filters."
+          "styleSettings": {
+            "borderStyle": "rounded",
+            "backgroundColor": "colorGray100"
+          }
+        }
       },
+      "customWidth": "25",
+      "name": "UniqueUsersPerformance",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -428,31 +572,38 @@
         "w": 6,
         "h": 3,
         "padding": "0"
-      },
-      "customWidth": "25"
+      }
     },
     {
       "type": 3,
-      "name": "dailyActiveUsers",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Daily active users",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| summarize UniqueUsers = dcount(user_Id) by bin(timestamp, 1d)\n| order by timestamp asc",
         "size": 0,
+        "title": "Daily active users",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "areachart",
         "chartSettings": {
           "showMetrics": false,
           "showLegend": true,
-          "seriesLabelSettings": [ { "seriesName": "UniqueUsers", "label": "Active Users" } ],
+          "seriesLabelSettings": [
+            {
+              "seriesName": "UniqueUsers",
+              "label": "Active Users"
+            }
+          ],
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" },
-          "ySettings": { "label": "Active Users" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          },
+          "ySettings": {
+            "label": "Active Users"
+          }
         }
       },
+      "name": "dailyActiveUsers",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -465,31 +616,45 @@
     },
     {
       "type": 3,
-      "name": "topicExecution",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Topic execution (Top 10 slowest)",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet topicEvents = customEvents\n| where timestamp {TimeRange}\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where name in (\"TopicStart\", \"TopicEnd\")\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    topicName = tostring(customDimensions.TopicName),\n    isDesignMode = tostring(customDimensions.DesignMode)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where isnotempty(topicName) and isnotempty(conversationId);\n\ntopicEvents\n| order by conversationId, timestamp asc\n| extend \n    PrevEvent = iff(prev(conversationId) == conversationId, prev(name), \"\"),\n    PrevTopicName = iff(prev(conversationId) == conversationId, prev(topicName), \"\"),\n    PrevTimestamp = iff(prev(conversationId) == conversationId, prev(timestamp), datetime(null))\n| where name == \"TopicEnd\" \n    and PrevEvent == \"TopicStart\" \n    and PrevTopicName == topicName\n    and isnotnull(PrevTimestamp)\n| extend TopicDuration = timestamp - PrevTimestamp\n| where TopicDuration >= 0s and TopicDuration <= 5m\n| summarize \n    AvgTopicDurationSec = round(avg(TopicDuration) / 1s, 2),\n    MedianTopicDurationSec = round(percentile(TopicDuration, 50) / 1s, 2),\n    MaxTopicDurationSec = round(max(TopicDuration) / 1s, 2),\n    TopicUsageCount = count()\n    by topicName\n| extend TopicDisplayName = case(\n    isnotempty(topicName) and indexof(topicName, \".\") >= 0, \n    tostring(split(topicName, \".\")[-1]),\n    topicName\n)\n| top 10 by AvgTopicDurationSec desc\n| order by AvgTopicDurationSec desc\n| render barchart with (\n    title=\"Top 10 Slowest Topics (Avg Processing Time)\", \n    xcolumn=TopicDisplayName, \n    ycolumns=AvgTopicDurationSec,\n    xtitle=\"Topic Name\",\n    ytitle=\"Average Duration (seconds)\"\n)",
         "size": 0,
+        "title": "Topic execution (Top 10 slowest)",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "barchart",
         "chartSettings": {
           "xAxis": "TopicDisplayName",
-          "yAxis": [ "AvgTopicDurationSec" ],
+          "yAxis": [
+            "AvgTopicDurationSec"
+          ],
           "showMetrics": false,
           "showLegend": true,
-          "seriesLabelSettings": [ { "seriesName": "UniqueUsers", "label": "Active Users" } ],
+          "seriesLabelSettings": [
+            {
+              "seriesName": "UniqueUsers",
+              "label": "Active Users"
+            }
+          ],
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" },
+          "simpleLegendSettings": {
+            "position": "bottom"
+          },
           "ySettings": {
-            "numberFormatSettings": { "unit": 24, "options": { "style": "decimal", "useGrouping": true } },
+            "numberFormatSettings": {
+              "unit": 24,
+              "options": {
+                "style": "decimal",
+                "useGrouping": true
+              }
+            },
             "label": "Avg topic execution time(Seconds)"
           }
         }
       },
+      "name": "topicExecution",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -502,25 +667,28 @@
     },
     {
       "type": 3,
-      "name": "agentResponseTime",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Agent response time",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet messageEvents = customEvents\n| where timestamp {TimeRange}\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where name in (\"BotMessageReceived\", \"BotMessageSend\")\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    messageType = tostring(customDimensions.type),\n    messageText = tostring(customDimensions.text)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where (name == \"BotMessageReceived\" and messageType == \"message\") or \n        (name == \"BotMessageSend\" and isnotempty(messageText));\n\nmessageEvents\n| order by conversationId, timestamp asc\n| extend \n    PrevEvent = iff(prev(conversationId) == conversationId, prev(name), \"\"),\n    PrevTimestamp = iff(prev(conversationId) == conversationId, prev(timestamp), datetime(null))\n| where name == \"BotMessageSend\" \n    and PrevEvent == \"BotMessageReceived\" \n    and isnotnull(PrevTimestamp)\n| extend ResponseTimeMs = datetime_diff('millisecond', timestamp, PrevTimestamp)\n| extend ResponseTimeSec = round(ResponseTimeMs / 1000.0, 2)\n| where ResponseTimeSec > 0 and ResponseTimeSec <= 120\n| make-series \n    AvgResponseTime = avg(ResponseTimeSec),\n    P50ResponseTime = percentile(ResponseTimeSec, 50),\n    P95ResponseTime = percentile(ResponseTimeSec, 95),\n    P99ResponseTime = percentile(ResponseTimeSec, 99),\n    TotalResponses = count()\n    default = 0 \n    on PrevTimestamp \n    in range({TimeRange:start}, {TimeRange:end}, {TimeRange:grain})\n| mvexpand \n    PrevTimestamp to typeof(datetime), \n    AvgResponseTime to typeof(real),\n    P50ResponseTime to typeof(real),\n    P95ResponseTime to typeof(real),\n    P99ResponseTime to typeof(real),\n    TotalResponses to typeof(long)\n| where TotalResponses > 0\n| order by PrevTimestamp asc\n| render timechart with (title=\"Bot Response Time Trends Over Time\", xtitle=\"Time\", ytitle=\"Response Time (seconds)\")",
         "size": 0,
+        "title": "Agent response time",
+        "headingLevel": 3,
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
         "visualization": "areachart",
         "chartSettings": {
           "showMetrics": false,
           "showLegend": true,
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" },
-          "ySettings": { "label": "Response Time(Seconds)" }
-        },
-        "headingLevel": 3
+          "simpleLegendSettings": {
+            "position": "bottom"
+          },
+          "ySettings": {
+            "label": "Response Time(Seconds)"
+          }
+        }
       },
+      "name": "agentResponseTime",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -533,27 +701,32 @@
     },
     {
       "type": 3,
-      "name": "toolperfomance",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Tool response time",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ndependencies\n| where timestamp {TimeRange}\n| where itemType == \"dependency\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where isnotempty(conversationId)\n| summarize \n    TotalCalls = count(),\n    SuccessfulCalls = countif(success == true),\n    FailedCalls = countif(success == false),\n    AvgDurationSec = round(avg(duration) / 1000.0, 2),\n    P50DurationSec = round(percentile(duration, 50) / 1000.0, 2),\n    P95DurationSec = round(percentile(duration, 95) / 1000.0, 2),\n    P99DurationSec = round(percentile(duration, 99) / 1000.0, 2),\n    UniqueConversations = dcount(conversationId),\n    UniqueChannels = dcount(channelId)\n    by ToolName = name, ToolType = type\n| extend \n    SuccessRate = round(SuccessfulCalls * 100.0 / TotalCalls, 2),\n    FailureRate = round(FailedCalls * 100.0 / TotalCalls, 2)\n| top 10 by AvgDurationSec desc\n| order by AvgDurationSec desc\n| render barchart with (\n    title=\"Top 10 Slowest Tools (Performance Issues)\", \n    xcolumn=ToolName, \n    ycolumns=AvgDurationSec,\n    xtitle=\"Tool Name\",\n    ytitle=\"Average Duration (seconds)\"\n)",
         "size": 0,
+        "title": "Tool response time",
+        "headingLevel": 3,
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
         "visualization": "barchart",
         "chartSettings": {
           "xAxis": "ToolName",
-          "yAxis": [ "AvgDurationSec" ],
+          "yAxis": [
+            "AvgDurationSec"
+          ],
           "showMetrics": false,
           "showLegend": true,
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" },
-          "ySettings": { "label": "Avg response time(Seconds)" }
-        },
-        "headingLevel": 3
+          "simpleLegendSettings": {
+            "position": "bottom"
+          },
+          "ySettings": {
+            "label": "Avg response time(Seconds)"
+          }
+        }
       },
+      "name": "toolperfomance",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -566,24 +739,25 @@
     },
     {
       "type": 3,
-      "name": "newvsretrnusrs",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "New vs Return users",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where includeTest or isDesignMode == \"False\"\n| summarize \n    ConversationCount = dcount(conversationId),\n    FirstSession = min(timestamp),\n    LastSession = max(timestamp)\n    by user_Id\n| extend \n    UserType = iff(ConversationCount > 1, \"Return User\", \"New User\")\n| summarize \n    UserCount = count(),\n    AvgConversationsPerUser = round(avg(ConversationCount), 1)\n    by UserType",
         "size": 0,
+        "title": "New vs Return users",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "piechart",
         "chartSettings": {
           "showMetrics": false,
           "showLegend": true,
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          }
         }
       },
+      "name": "newvsretrnusrs",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -596,36 +770,49 @@
     },
     {
       "type": 3,
-      "name": "toolsuccessrates",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Tool success rate",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ndependencies\n| where timestamp {TimeRange}\n| where itemType == \"dependency\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where isnotempty(conversationId)\n| summarize \n    TotalCalls = count(),\n    SuccessfulCalls = countif(success == true)\n    by ToolName = name\n| extend SuccessRate = round(SuccessfulCalls * 100.0 / TotalCalls, 1)\n| where TotalCalls >= 5\n| project ToolName, TotalCalls, SuccessfulCalls, SuccessRate\n| order by SuccessRate asc",
         "size": 0,
+        "title": "Tool success rate",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "barchart",
-        "chartSettings": {
-          "xAxis": "ToolName",
-          "yAxis": [ "SuccessRate" ],
-          "showMetrics": false,
-          "showLegend": true,
-          "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" }
-        },
         "tileSettings": {
-          "titleContent": { "columnMatch": "ToolName", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "ToolName",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "SuccessRate",
             "formatter": 12,
-            "formatOptions": { "palette": "auto" },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal" } }
+            "formatOptions": {
+              "palette": "auto"
+            },
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal"
+              }
+            }
           },
           "showBorder": false
+        },
+        "chartSettings": {
+          "xAxis": "ToolName",
+          "yAxis": [
+            "SuccessRate"
+          ],
+          "showMetrics": false,
+          "showLegend": true,
+          "showDataPoints": true,
+          "simpleLegendSettings": {
+            "position": "bottom"
+          }
         }
       },
+      "name": "toolsuccessrates",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -638,28 +825,37 @@
     },
     {
       "type": 3,
-      "name": "singlevsmultiturn",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Single-turn vs Multi-turn conversations",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where includeTest or isDesignMode == \"False\"\n| summarize EventCount = count() by conversationId\n| extend ConversationType = iff(EventCount > 2, \"Multi-turn\", \"Single-turn\")\n| summarize \n    ConversationCount = count(),\n    Percentage = round(count() * 100.0 / toscalar(customEvents\n        | where itemType == \"customEvent\"\n        | extend conversationId = tostring(customDimensions.conversationId),\n        isDesignMode = tostring(customDimensions.designMode)\n        | where isnotempty(conversationId)\n        | where includeTest or isDesignMode == \"False\"\n        | summarize DistinctConversations = dcount(conversationId, 1)), 1)\n    by ConversationType",
         "size": 0,
+        "title": "Single-turn vs Multi-turn conversations",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "piechart",
         "chartSettings": {
           "showMetrics": false,
           "showLegend": true,
           "seriesLabelSettings": [
-            { "seriesName": "Single-turn", "label": "Single-turn", "color": "orange" },
-            { "seriesName": "Multi-turn", "label": "Multi-turn", "color": "green" }
+            {
+              "seriesName": "Single-turn",
+              "label": "Single-turn",
+              "color": "orange"
+            },
+            {
+              "seriesName": "Multi-turn",
+              "label": "Multi-turn",
+              "color": "green"
+            }
           ],
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          }
         }
       },
+      "name": "singlevsmultiturn",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -672,26 +868,34 @@
     },
     {
       "type": 3,
-      "name": "DailyConversationVolume",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Daily conversation volume",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"designMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    isDesignMode = tostring(customDimensions.designMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where includeTest or isDesignMode == \"False\"\n| summarize ConversationCount = dcount(conversationId) by bin(timestamp, 1d)\n| order by timestamp asc",
         "size": 0,
+        "title": "Daily conversation volume",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "areachart",
         "chartSettings": {
           "showMetrics": false,
           "showLegend": true,
-          "seriesLabelSettings": [ { "seriesName": "ConversationCount", "label": "Conversation Count" } ],
+          "seriesLabelSettings": [
+            {
+              "seriesName": "ConversationCount",
+              "label": "Conversation Count"
+            }
+          ],
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" },
-          "ySettings": { "label": "Conversation Count" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          },
+          "ySettings": {
+            "label": "Conversation Count"
+          }
         }
       },
+      "name": "DailyConversationVolume",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -704,49 +908,43 @@
     },
     {
       "type": 11,
-      "name": "Actions - 1",
       "content": {
         "version": "LinkItem/1.0",
+        "style": "paragraph",
         "links": [
           {
             "id": "37921353-f4fe-435a-8304-df335417888a",
-            "key": "37921353-f4fe-435a-8304-df335417888a",
             "cellValue": "{AppInsights}",
             "linkTarget": "Resource",
             "linkLabel": "Agent Details",
             "subTarget": "agents",
             "preText": "This Preview Workbook will be removed on Jan 31, 2026, and we will recommend customers use the",
             "postText": " page in Application Insights instead.",
-            "style": "link",
-            "linkIsContextBlade": false
+            "style": "link"
           },
           {
             "id": "3b5d1fca-1dba-422a-aab0-181722d0ce9c",
-            "key": "3b5d1fca-1dba-422a-aab0-181722d0ce9c",
             "cellValue": "1",
             "linkTarget": "step",
             "linkLabel": ".",
             "subTarget": ".",
             "preText": "The agent details view will be available to Microsoft Copilot Studio customers after planned data model upgrades. Until then, this workbook is the best out-of-box visualization available in Azure Monitor for data from Microsoft Copilot Studio ",
             "postText": "",
-            "style": "link",
-            "linkIsContextBlade": false
+            "style": "link"
           },
           {
             "id": "64b28756-5e0d-452f-8e9f-44e711e2795f",
-            "key": "64b28756-5e0d-452f-8e9f-44e711e2795f",
             "cellValue": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry?tabs=webApp#connect-your-copilot-studio-agent-to-application-insights",
             "linkTarget": "Url",
             "linkLabel": "agent's configuration",
             "subTarget": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-bot-framework-composer-capture-telemetry?tabs=webApp#connect-your-copilot-studio-agent-to-application-insights",
             "preText": "To capture telemetry data from your Copilot Studio agent for use in Azure Application Insights, you first need to add your instrumentation key to your ",
             "postText": ".",
-            "style": "link",
-            "linkIsContextBlade": false
+            "style": "link"
           }
-        ],
-        "style": "paragraph"
+        ]
       },
+      "name": "Actions - 1",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light thick",
@@ -758,16 +956,13 @@
         "margin": "0"
       }
     },
-
-
     {
       "type": 1,
-      "name": "Content Safety Section",
       "content": {
         "json": "Content moderation analysis based on **GenerativeAnswers** telemetry events. Tracks when Copilot Studio's content safety filters block user prompts that violate Responsible AI policies.",
-        "title": "Content Safety & Moderation",
-        "showViewButton": false
+        "title": "Content Safety & Moderation"
       },
+      "name": "Content Safety Section",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -780,28 +975,36 @@
         "padding": "0"
       }
     },
-
-
     {
       "type": 3,
-      "name": "totalBlockedMessages",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\nlet start_time = {TimeRange:start}; \nlet end_time = {TimeRange:end}; \nlet period = end_time - start_time;\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet change_percent = (final: double, initial: double) {\n    iff(initial == 0, \n        iff(final == 0, real(0), real(100)),\n        (final-initial) / initial * 100)\n};\n\ncustomEvents\n| where timestamp between ((start_time - period) .. end_time)\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where Result contains \"Filtered\"\n| make-series kind=nonempty total_blocked = count() on timestamp from (start_time - period) to end_time step period\n| project final_total_blocked = todouble(total_blocked[1]), initial_total_blocked = todouble(total_blocked[0])\n| project \n    metric = \"Blocked messages\", \n    final_total_blocked, \n    initial_total_blocked,\n    overall_percentage_change = round(change_percent(final_total_blocked, initial_total_blocked)),\n    absolute_change = final_total_blocked - initial_total_blocked\n| extend change_description = case(\n    initial_total_blocked == 0 and final_total_blocked > 0, strcat(\"New: +\", tostring(toint(final_total_blocked)), \" blocked\"),\n    initial_total_blocked > 0 and final_total_blocked == 0, \"No blocks in current period\",\n    initial_total_blocked == 0 and final_total_blocked == 0, \"No blocks in either period\",\n    strcat(iff(final_total_blocked > initial_total_blocked, \"+\", \"\"), \n           tostring(round(overall_percentage_change, 1)), \"% change\")\n)",
         "size": 4,
+        "showAnalytics": true,
+        "noDataMessage": "No blocked messages detected in this time range.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "tiles",
         "tileSettings": {
-          "titleContent": { "columnMatch": "metric", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "metric",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "final_total_blocked",
             "formatter": 12,
-            "formatOptions": { "palette": "none" },
-            "numberFormat": { "unit": 17, "options": { "style": "decimal", "maximumFractionDigits": 0 } }
+            "formatOptions": {
+              "palette": "none"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 0
+              }
+            }
           },
           "secondaryContent": {
             "columnMatch": "overall_percentage_change",
@@ -809,22 +1012,44 @@
             "formatOptions": {
               "thresholdsOptions": "colors",
               "thresholdsGrid": [
-                { "operator": ">", "thresholdValue": "0", "representation": "red", "text": "{0}{1} increase over time range" },
-                { "operator": "<", "thresholdValue": "0", "representation": "green", "text": "{0}{1} decrease over time range" },
-                { "operator": "Default", "thresholdValue": null, "representation": "gray", "text": "No change" }
+                {
+                  "operator": ">",
+                  "thresholdValue": "0",
+                  "representation": "red",
+                  "text": "{0}{1} increase over time range"
+                },
+                {
+                  "operator": "<",
+                  "thresholdValue": "0",
+                  "representation": "green",
+                  "text": "{0}{1} decrease over time range"
+                },
+                {
+                  "operator": "Default",
+                  "thresholdValue": null,
+                  "representation": "gray",
+                  "text": "No change"
+                }
               ],
               "showAsTag": true
             },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal", "maximumFractionDigits": 0 } }
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 0
+              }
+            }
           },
           "showBorder": true,
           "size": "full",
-          "styleSettings": { "borderStyle": "rounded", "backgroundColor": "colorGray100" }
-        },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "No blocked messages detected in this time range."
+          "styleSettings": {
+            "borderStyle": "rounded",
+            "backgroundColor": "colorGray100"
+          }
+        }
       },
+      "name": "totalBlockedMessages",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -836,28 +1061,36 @@
         "padding": "0"
       }
     },
-
-
     {
       "type": 3,
-      "name": "blockRate",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\nlet start_time = {TimeRange:start}; \nlet end_time = {TimeRange:end}; \nlet period = end_time - start_time;\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet change_percent = (final: double, initial: double) {\n    iff(initial == 0, \n        iff(final == 0, real(0), real(100)),\n        (final-initial) / initial * 100)\n};\n\nlet allGA = customEvents\n| where timestamp between ((start_time - period) .. end_time)\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| extend IsBlocked = Result contains \"Filtered\"\n| extend TimePeriod = iff(timestamp >= start_time, \"Current\", \"Previous\");\n\nlet current_stats = allGA | where TimePeriod == \"Current\" | summarize Total = count(), Blocked = countif(IsBlocked);\nlet previous_stats = allGA | where TimePeriod == \"Previous\" | summarize Total = count(), Blocked = countif(IsBlocked);\n\nlet final_rate = toscalar(current_stats | project iff(Total > 0, round(Blocked * 100.0 / Total, 1), 0.0));\nlet initial_rate = toscalar(previous_stats | project iff(Total > 0, round(Blocked * 100.0 / Total, 1), 0.0));\n\nprint metric = \"Block rate\",\n    final_block_rate = coalesce(final_rate, 0.0),\n    initial_block_rate = coalesce(initial_rate, 0.0),\n    overall_percentage_change = round(change_percent(coalesce(final_rate, 0.0), coalesce(initial_rate, 0.0)))\n| extend change_description = case(\n    initial_block_rate == 0 and final_block_rate > 0, strcat(tostring(final_block_rate), \"% block rate (new)\"),\n    initial_block_rate > 0 and final_block_rate == 0, \"No blocks in current period\",\n    initial_block_rate == 0 and final_block_rate == 0, \"No blocks in either period\",\n    strcat(iff(overall_percentage_change > 0, \"+\", \"\"), \n           tostring(overall_percentage_change), \"% change\")\n)",
         "size": 4,
+        "showAnalytics": true,
+        "noDataMessage": "No generative answer events in this time range.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "tiles",
         "tileSettings": {
-          "titleContent": { "columnMatch": "metric", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "metric",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "final_block_rate",
             "formatter": 12,
-            "formatOptions": { "palette": "none" },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal", "maximumFractionDigits": 1 } }
+            "formatOptions": {
+              "palette": "none"
+            },
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 1
+              }
+            }
           },
           "secondaryContent": {
             "columnMatch": "overall_percentage_change",
@@ -865,22 +1098,44 @@
             "formatOptions": {
               "thresholdsOptions": "colors",
               "thresholdsGrid": [
-                { "operator": ">", "thresholdValue": "0", "representation": "red", "text": "{0}{1} increase over time range" },
-                { "operator": "<", "thresholdValue": "0", "representation": "green", "text": "{0}{1} decrease over time range" },
-                { "operator": "Default", "thresholdValue": null, "representation": "gray", "text": "No change" }
+                {
+                  "operator": ">",
+                  "thresholdValue": "0",
+                  "representation": "red",
+                  "text": "{0}{1} increase over time range"
+                },
+                {
+                  "operator": "<",
+                  "thresholdValue": "0",
+                  "representation": "green",
+                  "text": "{0}{1} decrease over time range"
+                },
+                {
+                  "operator": "Default",
+                  "thresholdValue": null,
+                  "representation": "gray",
+                  "text": "No change"
+                }
               ],
               "showAsTag": true
             },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal", "maximumFractionDigits": 0 } }
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 0
+              }
+            }
           },
           "showBorder": true,
           "size": "full",
-          "styleSettings": { "borderStyle": "rounded", "backgroundColor": "colorGray100" }
-        },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "No generative answer events in this time range."
+          "styleSettings": {
+            "borderStyle": "rounded",
+            "backgroundColor": "colorGray100"
+          }
+        }
       },
+      "name": "blockRate",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -892,28 +1147,36 @@
         "padding": "0"
       }
     },
-
-
     {
       "type": 3,
-      "name": "blockedConversations",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\nlet start_time = {TimeRange:start}; \nlet end_time = {TimeRange:end}; \nlet period = end_time - start_time;\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\nlet change_percent = (final: double, initial: double) {\n    iff(initial == 0, \n        iff(final == 0, real(0), real(100)),\n        (final-initial) / initial * 100)\n};\n\ncustomEvents\n| where timestamp between ((start_time - period) .. end_time)\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where Result contains \"Filtered\"\n| make-series kind=nonempty blocked_convs = dcount(conversationId) on timestamp from (start_time - period) to end_time step period\n| project final_blocked_convs = todouble(blocked_convs[1]), initial_blocked_convs = todouble(blocked_convs[0])\n| project \n    metric = \"Conversations with blocks\", \n    final_blocked_convs, \n    initial_blocked_convs,\n    overall_percentage_change = round(change_percent(final_blocked_convs, initial_blocked_convs)),\n    absolute_change = final_blocked_convs - initial_blocked_convs\n| extend change_description = case(\n    initial_blocked_convs == 0 and final_blocked_convs > 0, strcat(\"New: \", tostring(toint(final_blocked_convs)), \" conversations\"),\n    initial_blocked_convs > 0 and final_blocked_convs == 0, \"No blocked conversations\",\n    initial_blocked_convs == 0 and final_blocked_convs == 0, \"No blocks in either period\",\n    strcat(iff(final_blocked_convs > initial_blocked_convs, \"+\", \"\"), \n           tostring(round(overall_percentage_change, 1)), \"% change\")\n)",
         "size": 4,
+        "showAnalytics": true,
+        "noDataMessage": "No blocked conversations in this time range.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "tiles",
         "tileSettings": {
-          "titleContent": { "columnMatch": "metric", "formatter": 1 },
+          "titleContent": {
+            "columnMatch": "metric",
+            "formatter": 1
+          },
           "leftContent": {
             "columnMatch": "final_blocked_convs",
             "formatter": 12,
-            "formatOptions": { "palette": "none" },
-            "numberFormat": { "unit": 17, "options": { "style": "decimal", "maximumFractionDigits": 0 } }
+            "formatOptions": {
+              "palette": "none"
+            },
+            "numberFormat": {
+              "unit": 17,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 0
+              }
+            }
           },
           "secondaryContent": {
             "columnMatch": "overall_percentage_change",
@@ -921,22 +1184,44 @@
             "formatOptions": {
               "thresholdsOptions": "colors",
               "thresholdsGrid": [
-                { "operator": ">", "thresholdValue": "0", "representation": "red", "text": "{0}{1} increase over time range" },
-                { "operator": "<", "thresholdValue": "0", "representation": "green", "text": "{0}{1} decrease over time range" },
-                { "operator": "Default", "thresholdValue": null, "representation": "gray", "text": "No change" }
+                {
+                  "operator": ">",
+                  "thresholdValue": "0",
+                  "representation": "red",
+                  "text": "{0}{1} increase over time range"
+                },
+                {
+                  "operator": "<",
+                  "thresholdValue": "0",
+                  "representation": "green",
+                  "text": "{0}{1} decrease over time range"
+                },
+                {
+                  "operator": "Default",
+                  "thresholdValue": null,
+                  "representation": "gray",
+                  "text": "No change"
+                }
               ],
               "showAsTag": true
             },
-            "numberFormat": { "unit": 1, "options": { "style": "decimal", "maximumFractionDigits": 0 } }
+            "numberFormat": {
+              "unit": 1,
+              "options": {
+                "style": "decimal",
+                "maximumFractionDigits": 0
+              }
+            }
           },
           "showBorder": true,
           "size": "full",
-          "styleSettings": { "borderStyle": "rounded", "backgroundColor": "colorGray100" }
-        },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "No blocked conversations in this time range."
+          "styleSettings": {
+            "borderStyle": "rounded",
+            "backgroundColor": "colorGray100"
+          }
+        }
       },
+      "name": "blockedConversations",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -948,35 +1233,47 @@
         "padding": "0"
       }
     },
-
-
     {
       "type": 3,
-      "name": "contentModerationTrend",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Content moderation trend (Blocked vs Passed)",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| extend ModerationStatus = iff(Result contains \"Filtered\", \"Blocked\", \"Passed\")\n| summarize \n    Blocked = countif(ModerationStatus == \"Blocked\"), \n    Passed = countif(ModerationStatus == \"Passed\") \n    by bin(timestamp, 1d)\n| order by timestamp asc",
         "size": 0,
+        "title": "Content moderation trend (Blocked vs Passed)",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "barchart",
         "chartSettings": {
           "xAxis": "timestamp",
-          "yAxis": [ "Blocked", "Passed" ],
+          "yAxis": [
+            "Blocked",
+            "Passed"
+          ],
           "showMetrics": false,
           "showLegend": true,
           "seriesLabelSettings": [
-            { "seriesName": "Blocked", "label": "Blocked by Content Safety", "color": "redBright" },
-            { "seriesName": "Passed", "label": "Passed Content Safety", "color": "green" }
+            {
+              "seriesName": "Blocked",
+              "label": "Blocked by Content Safety",
+              "color": "redBright"
+            },
+            {
+              "seriesName": "Passed",
+              "label": "Passed Content Safety",
+              "color": "green"
+            }
           ],
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" },
-          "ySettings": { "label": "Message Count" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          },
+          "ySettings": {
+            "label": "Message Count"
+          }
         }
       },
+      "name": "contentModerationTrend",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -987,34 +1284,49 @@
         "padding": "16px"
       }
     },
-
-
     {
       "type": 3,
-      "name": "moderationResults",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Moderation results distribution",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| extend ModerationResult = case(\n    Result contains \"Filtered\", \"Blocked by Content Moderation\",\n    Result == \"No Search Results\", \"No Search Results\",\n    isnotempty(Result), \"Passed\",\n    \"Unknown\"\n)\n| summarize Count = count() by ModerationResult",
         "size": 0,
+        "title": "Moderation results distribution",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "piechart",
         "chartSettings": {
           "showMetrics": false,
           "showLegend": true,
           "seriesLabelSettings": [
-            { "seriesName": "Blocked by Content Moderation", "label": "Blocked", "color": "redBright" },
-            { "seriesName": "Passed", "label": "Passed", "color": "green" },
-            { "seriesName": "No Search Results", "label": "No Results", "color": "orange" },
-            { "seriesName": "Unknown", "label": "Unknown", "color": "gray" }
+            {
+              "seriesName": "Blocked by Content Moderation",
+              "label": "Blocked",
+              "color": "redBright"
+            },
+            {
+              "seriesName": "Passed",
+              "label": "Passed",
+              "color": "green"
+            },
+            {
+              "seriesName": "No Search Results",
+              "label": "No Results",
+              "color": "orange"
+            },
+            {
+              "seriesName": "Unknown",
+              "label": "Unknown",
+              "color": "gray"
+            }
           ],
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          }
         }
       },
+      "name": "moderationResults",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -1025,34 +1337,41 @@
         "padding": "16px"
       }
     },
-
-
     {
       "type": 3,
-      "name": "topBlockedUsers",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Top users triggering content blocks",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\n// Get blocked GenerativeAnswers events\nlet blockedGA = customEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where Result contains \"Filtered\";\n\n// Get user info from BotMessageReceived\nlet userInfo = customEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"BotMessageReceived\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    fromId = tostring(customDimensions.fromId)\n| where isnotempty(conversationId) and isnotempty(fromId)\n| summarize any(fromId) by conversationId;\n\nblockedGA\n| join kind=leftouter userInfo on conversationId\n| extend UserId = coalesce(any_fromId, user_Id, \"Unknown\")\n| summarize \n    BlockedCount = count(),\n    UniqueConversations = dcount(conversationId),\n    LastBlocked = max(timestamp)\n    by UserId\n| top 10 by BlockedCount desc\n| project UserId, BlockedCount, UniqueConversations, LastBlocked\n| order by BlockedCount desc",
         "size": 0,
+        "title": "Top users triggering content blocks",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "barchart",
         "chartSettings": {
           "xAxis": "UserId",
-          "yAxis": [ "BlockedCount" ],
+          "yAxis": [
+            "BlockedCount"
+          ],
           "showMetrics": false,
           "showLegend": true,
           "seriesLabelSettings": [
-            { "seriesName": "BlockedCount", "label": "Blocked Messages", "color": "redBright" }
+            {
+              "seriesName": "BlockedCount",
+              "label": "Blocked Messages",
+              "color": "redBright"
+            }
           ],
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" },
-          "ySettings": { "label": "Blocked Message Count" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          },
+          "ySettings": {
+            "label": "Blocked Message Count"
+          }
         }
       },
+      "name": "topBlockedUsers",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -1063,28 +1382,27 @@
         "padding": "16px"
       }
     },
-
-
     {
       "type": 3,
-      "name": "blockedByChannel",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Blocked messages by channel",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where Result contains \"Filtered\"\n| extend Channel = case(\n    channelId == \"pva-studio\", \"Test Canvas\",\n    channelId == \"msteams\", \"Microsoft Teams\",\n    channelId == \"webchat\", \"Web Chat\",\n    channelId == \"directline\", \"Direct Line\",\n    isnotempty(channelId), channelId,\n    \"Unknown\"\n)\n| summarize BlockedCount = count(), UniqueConversations = dcount(conversationId) by Channel",
         "size": 0,
+        "title": "Blocked messages by channel",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "piechart",
         "chartSettings": {
           "showMetrics": false,
           "showLegend": true,
           "showDataPoints": true,
-          "simpleLegendSettings": { "position": "bottom" }
+          "simpleLegendSettings": {
+            "position": "bottom"
+          }
         }
       },
+      "name": "blockedByChannel",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -1095,16 +1413,13 @@
         "padding": "16px"
       }
     },
-
-
     {
       "type": 1,
-      "name": "Blocked Messages Detail Section",
       "content": {
         "json": "Detailed view of every blocked message showing the user prompt, moderation result, conversation context, and correlated bot response.",
-        "title": "Blocked Messages Detail",
-        "showViewButton": false
+        "title": "Blocked Messages Detail"
       },
+      "name": "Blocked Messages Detail Section",
       "styleSettings": {
         "showBorder": false,
         "borderStyle": "light rounded",
@@ -1117,32 +1432,34 @@
         "padding": "0"
       }
     },
-
-
     {
       "type": 3,
-      "name": "blockedMessagesDetail",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "All blocked messages (with correlated prompt and bot response)",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\n// Get all blocked GenerativeAnswers\nlet blockedGA = customEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    Message = tostring(customDimensions.Message),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId),\n    TopicName = tostring(customDimensions.TopicName),\n    Kind = tostring(customDimensions.Kind)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where Result contains \"Filtered\"\n| project \n    BlockedTimestamp = timestamp,\n    conversationId,\n    UserPrompt = Message,\n    ModerationResult = Result,\n    channelId,\n    TopicName,\n    Kind,\n    DesignMode,\n    Agent = cloud_RoleInstance;\n\n// Get user info from BotMessageReceived events\nlet userMessages = customEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"BotMessageReceived\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    fromId = tostring(customDimensions.fromId),\n    recipientName = tostring(customDimensions.recipientName)\n| where isnotempty(conversationId)\n| summarize \n    UserId = take_any(fromId),\n    AgentName = take_any(recipientName)\n    by conversationId;\n\n// Get all bot responses with their timestamps for precise correlation\nlet botResponses = customEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"BotMessageSend\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    botText = tostring(customDimensions.text)\n| where isnotempty(conversationId) and isnotempty(botText)\n| project botTimestamp = timestamp, conversationId, botText;\n\n// Join and find the FIRST bot response AFTER each blocked event (the fallback response)\nblockedGA\n| join kind=leftouter userMessages on conversationId\n| join kind=leftouter botResponses on conversationId\n| where botTimestamp >= BlockedTimestamp or isnull(botTimestamp)\n| summarize arg_min(botTimestamp, botText) by \n    BlockedTimestamp, conversationId, UserPrompt, ModerationResult, channelId, DesignMode, Agent, UserId, AgentName\n| project \n    ['Timestamp'] = BlockedTimestamp,\n    ['Agent'] = coalesce(AgentName, Agent),\n    ['User ID'] = coalesce(UserId, \"Unknown\"),\n    ['Channel'] = case(\n        channelId == \"pva-studio\", \"Test Canvas\",\n        channelId == \"msteams\", \"Teams\",\n        channelId == \"webchat\", \"Web Chat\",\n        isnotempty(channelId), channelId,\n        \"Unknown\"\n    ),\n    ['User Prompt'] = UserPrompt,\n    ['Moderation Result'] = ModerationResult,\n    ['Bot Response'] = coalesce(botText, \"(no response captured)\"),\n    ['Test Mode'] = iff(DesignMode == \"True\", \"Yes\", \"No\"),\n    ['Conversation ID'] = conversationId\n| order by ['Timestamp'] desc",
         "size": 0,
+        "showAnalytics": true,
+        "title": "All blocked messages (with correlated prompt and bot response)",
+        "noDataMessage": "No blocked messages found. Content safety is not blocking any user prompts in this time range.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "table",
         "gridSettings": {
           "formatters": [
             {
               "columnMatch": "Timestamp",
               "formatter": 6,
-              "formatOptions": { "customColumnWidthSetting": "160px" }
+              "formatOptions": {
+                "customColumnWidthSetting": "160px"
+              }
             },
             {
               "columnMatch": "User Prompt",
               "formatter": 1,
-              "formatOptions": { "customColumnWidthSetting": "300px" }
+              "formatOptions": {
+                "customColumnWidthSetting": "300px"
+              }
             },
             {
               "columnMatch": "Moderation Result",
@@ -1150,15 +1467,26 @@
               "formatOptions": {
                 "thresholdsOptions": "colors",
                 "thresholdsGrid": [
-                  { "operator": "contains", "thresholdValue": "Filtered", "representation": "redBright", "text": "{0}" },
-                  { "operator": "Default", "representation": "gray", "text": "{0}" }
+                  {
+                    "operator": "contains",
+                    "thresholdValue": "Filtered",
+                    "representation": "redBright",
+                    "text": "{0}"
+                  },
+                  {
+                    "operator": "Default",
+                    "representation": "gray",
+                    "text": "{0}"
+                  }
                 ]
               }
             },
             {
               "columnMatch": "Bot Response",
               "formatter": 1,
-              "formatOptions": { "customColumnWidthSetting": "250px" }
+              "formatOptions": {
+                "customColumnWidthSetting": "250px"
+              }
             },
             {
               "columnMatch": "Test Mode",
@@ -1166,25 +1494,50 @@
               "formatOptions": {
                 "thresholdsOptions": "colors",
                 "thresholdsGrid": [
-                  { "operator": "==", "thresholdValue": "Yes", "representation": "orange", "text": "Test" },
-                  { "operator": "==", "thresholdValue": "No", "representation": "blue", "text": "Production" },
-                  { "operator": "Default", "representation": "gray", "text": "{0}" }
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Yes",
+                    "representation": "orange",
+                    "text": "Test"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "No",
+                    "representation": "blue",
+                    "text": "Production"
+                  },
+                  {
+                    "operator": "Default",
+                    "representation": "gray",
+                    "text": "{0}"
+                  }
                 ]
               }
             },
             {
               "columnMatch": "Conversation ID",
               "formatter": 1,
-              "formatOptions": { "customColumnWidthSetting": "150px" }
+              "formatOptions": {
+                "customColumnWidthSetting": "150px"
+              }
             }
           ],
-          "sortBy": [ { "itemKey": "Timestamp", "sortOrder": 2 } ],
-          "rowLimit": 100
+          "rowLimit": 100,
+          "sortBy": [
+            {
+              "itemKey": "Timestamp",
+              "sortOrder": 2
+            }
+          ]
         },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "No blocked messages found. Content safety is not blocking any user prompts in this time range."
+        "sortBy": [
+          {
+            "itemKey": "Timestamp",
+            "sortOrder": 2
+          }
+        ]
       },
+      "name": "blockedMessagesDetail",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -1195,27 +1548,27 @@
         "padding": "16px"
       }
     },
-
-
     {
       "type": 3,
-      "name": "blockedConversationTimeline",
       "content": {
         "version": "KqlItem/1.0",
-        "title": "Blocked conversation timeline (full event flow)",
         "query": "let copilotAgent = dynamic([{CopilotAgent}]);\nlet channelFilter = dynamic([{ChannelFilter}]);\nlet includeTest = '{IncludeTestData}' == 'true';\n\nlet get_channel = (customDimensions: dynamic) { \n    tostring(customDimensions[\"channelId\"]) \n};\n\nlet is_copilot_event = (customDimensions: dynamic) {\n    let convId = tostring(customDimensions[\"conversationId\"]);\n    isnotempty(convId)\n};\n\nlet filter_agent_and_channel = (customDimensions: dynamic, app_name: string) {\n    let channelId = get_channel(customDimensions);\n    is_copilot_event(customDimensions) == true and \n    (\"*\" in (channelFilter) or array_length(channelFilter) == 0 or isnotempty(channelId) and channelId in (channelFilter)) and \n    ('*' in (copilotAgent) or array_length(copilotAgent) == 0 or isnotempty(app_name) and app_name in (copilotAgent))\n};\n\nlet filter_test_data = (customDimensions: dynamic) {\n    let isDesignMode = tostring(customDimensions[\"DesignMode\"]);\n    includeTest or (isnotempty(isDesignMode) and isDesignMode == \"False\")\n};\n\n// Find conversations that had at least one blocked message\nlet blockedConvIds = customEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| where name == \"GenerativeAnswers\"\n| extend \n    conversationId = tostring(customDimensions.conversationId),\n    Result = tostring(customDimensions.Result),\n    DesignMode = tostring(customDimensions.DesignMode),\n    channelId = tostring(customDimensions.channelId)\n| where isnotempty(conversationId)\n| where filter_agent_and_channel(customDimensions, cloud_RoleInstance)\n| where filter_test_data(customDimensions)\n| where Result contains \"Filtered\"\n| distinct conversationId;\n\n// Get full event timeline for those conversations\ncustomEvents\n| where itemType == \"customEvent\" and cloud_RoleName == \"Microsoft Copilot Studio\"\n| where timestamp {TimeRange}\n| extend conversationId = tostring(customDimensions.conversationId)\n| where isnotempty(conversationId)\n| join kind=inner blockedConvIds on conversationId\n| extend\n    EventType = name,\n    Message = coalesce(\n        tostring(customDimensions.text), \n        tostring(customDimensions.Message), \n        \"\"\n    ),\n    Result = tostring(customDimensions.Result),\n    TopicName = tostring(customDimensions.TopicName),\n    FromId = tostring(customDimensions.fromId),\n    channelId = tostring(customDimensions.channelId),\n    Kind = tostring(customDimensions.Kind)\n| project \n    ['Timestamp'] = timestamp,\n    ['Conversation ID'] = conversationId,\n    ['Event Type'] = EventType,\n    ['Content'] = case(\n        EventType == \"BotMessageReceived\" and isnotempty(Message), strcat(\"[USER] \", Message),\n        EventType == \"BotMessageSend\" and isnotempty(Message), strcat(\"[BOT] \", Message),\n        EventType == \"GenerativeAnswers\" and isnotempty(Message), strcat(\"[AI QUERY] \", Message),\n        EventType == \"TopicStart\", strcat(\"Topic started: \", TopicName),\n        EventType == \"TopicEnd\", strcat(\"Topic ended: \", TopicName),\n        EventType == \"TopicAction\", strcat(\"Action: \", Kind, \" in \", TopicName),\n        \"(event)\"\n    ),\n    ['Moderation'] = case(\n        Result contains \"Filtered\", \"BLOCKED\",\n        EventType == \"GenerativeAnswers\" and isnotempty(Result), \"Passed\",\n        \"\"\n    ),\n    ['Channel'] = case(\n        channelId == \"pva-studio\", \"Test Canvas\",\n        channelId == \"msteams\", \"Teams\",\n        channelId == \"webchat\", \"Web Chat\",\n        isnotempty(channelId), channelId,\n        \"\"\n    )\n| order by ['Conversation ID'] asc, ['Timestamp'] asc",
         "size": 0,
+        "showAnalytics": true,
+        "title": "Blocked conversation timeline (full event flow)",
+        "noDataMessage": "No conversations with content blocks found in this time range.",
+        "timeContextFromParameter": "TimeRange",
         "queryType": 0,
         "resourceType": "microsoft.insights/components",
-        "crossComponentResources": [],
-        "timeContextFromParameter": "TimeRange",
         "visualization": "table",
         "gridSettings": {
           "formatters": [
             {
               "columnMatch": "Timestamp",
               "formatter": 6,
-              "formatOptions": { "customColumnWidthSetting": "180px" }
+              "formatOptions": {
+                "customColumnWidthSetting": "180px"
+              }
             },
             {
               "columnMatch": "Event Type",
@@ -1223,20 +1576,56 @@
               "formatOptions": {
                 "thresholdsOptions": "colors",
                 "thresholdsGrid": [
-                  { "operator": "==", "thresholdValue": "BotMessageReceived", "representation": "blue", "text": "User Message" },
-                  { "operator": "==", "thresholdValue": "BotMessageSend", "representation": "green", "text": "Bot Response" },
-                  { "operator": "==", "thresholdValue": "GenerativeAnswers", "representation": "purple", "text": "AI Processing" },
-                  { "operator": "==", "thresholdValue": "TopicStart", "representation": "turquoise", "text": "Topic Start" },
-                  { "operator": "==", "thresholdValue": "TopicEnd", "representation": "gray", "text": "Topic End" },
-                  { "operator": "==", "thresholdValue": "TopicAction", "representation": "orange", "text": "Topic Action" },
-                  { "operator": "Default", "representation": "gray", "text": "{0}" }
+                  {
+                    "operator": "==",
+                    "thresholdValue": "BotMessageReceived",
+                    "representation": "blue",
+                    "text": "User Message"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "BotMessageSend",
+                    "representation": "green",
+                    "text": "Bot Response"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "GenerativeAnswers",
+                    "representation": "purple",
+                    "text": "AI Processing"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "TopicStart",
+                    "representation": "turquoise",
+                    "text": "Topic Start"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "TopicEnd",
+                    "representation": "gray",
+                    "text": "Topic End"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "TopicAction",
+                    "representation": "orange",
+                    "text": "Topic Action"
+                  },
+                  {
+                    "operator": "Default",
+                    "representation": "gray",
+                    "text": "{0}"
+                  }
                 ]
               }
             },
             {
               "columnMatch": "Content",
               "formatter": 1,
-              "formatOptions": { "customColumnWidthSetting": "400px" }
+              "formatOptions": {
+                "customColumnWidthSetting": "400px"
+              }
             },
             {
               "columnMatch": "Moderation",
@@ -1244,29 +1633,64 @@
               "formatOptions": {
                 "thresholdsOptions": "colors",
                 "thresholdsGrid": [
-                  { "operator": "==", "thresholdValue": "BLOCKED", "representation": "redBright", "text": "BLOCKED" },
-                  { "operator": "==", "thresholdValue": "Passed", "representation": "green", "text": "Passed" },
-                  { "operator": "Default", "representation": "gray", "text": "" }
+                  {
+                    "operator": "==",
+                    "thresholdValue": "BLOCKED",
+                    "representation": "redBright",
+                    "text": "BLOCKED"
+                  },
+                  {
+                    "operator": "==",
+                    "thresholdValue": "Passed",
+                    "representation": "green",
+                    "text": "Passed"
+                  },
+                  {
+                    "operator": "Default",
+                    "representation": "gray",
+                    "text": ""
+                  }
                 ]
               }
             },
             {
               "columnMatch": "Conversation ID",
               "formatter": 1,
-              "formatOptions": { "customColumnWidthSetting": "150px" }
+              "formatOptions": {
+                "customColumnWidthSetting": "150px"
+              }
             }
           ],
-          "sortBy": [ { "itemKey": "Conversation ID", "sortOrder": 1 }, { "itemKey": "Timestamp", "sortOrder": 1 } ],
           "rowLimit": 200,
           "hierarchySettings": {
             "treeType": 1,
-            "groupBy": [ "Conversation ID" ]
-          }
+            "groupBy": [
+              "Conversation ID"
+            ]
+          },
+          "sortBy": [
+            {
+              "itemKey": "Conversation ID",
+              "sortOrder": 1
+            },
+            {
+              "itemKey": "Timestamp",
+              "sortOrder": 1
+            }
+          ]
         },
-        "showViewButton": false,
-        "showAnalytics": true,
-        "noDataMessage": "No conversations with content blocks found in this time range."
+        "sortBy": [
+          {
+            "itemKey": "Conversation ID",
+            "sortOrder": 1
+          },
+          {
+            "itemKey": "Timestamp",
+            "sortOrder": 1
+          }
+        ]
       },
+      "name": "blockedConversationTimeline",
       "styleSettings": {
         "showBorder": true,
         "borderStyle": "light rounded",
@@ -1278,20 +1702,9 @@
       }
     }
   ],
-  "layout": {
-    "type": "grid",
-    "options": {
-      "rowHeight": 44
-    }
-  },
-  "styleSettings": {
-    "paddingStyle": "standard",
-    "spacingStyle": "standard"
-  },
-  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json",
-  "workbookPin": "",
-  "fromTemplateId": "community-Workbooks/Copilot Studio",
   "fallbackResourceIds": [
     "/subscriptions/5ae0c5c8-1440-49ca-900f-725892517857/resourcegroups/rg-cs-appinsights/providers/microsoft.insights/components/app-insights-cs"
-  ]
+  ],
+  "fromTemplateId": "community-Workbooks/Copilot Studio",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
 }
